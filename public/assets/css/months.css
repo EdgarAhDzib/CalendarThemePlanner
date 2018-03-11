@@ -1,0 +1,23 @@
+#mainGrid {
+	display: grid;
+	justify-self: center;
+	align-content: center;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(3, 1fr);
+	margin-left: 5%;
+	margin-right: 5%;
+}
+
+.monthPanel {
+	background-color: #40a039;
+	margin: 5%;
+	padding: 5%;
+	border-radius: 15px;
+}
+
+.subUnit {
+	margin: 5%;
+	padding: 5%;
+	border-radius: 5px;
+	background-color: white;
+}
