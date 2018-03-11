@@ -58,6 +58,10 @@ router.get("/success",  (req, res) => {
 
 router.get("/fail",  (req, res) => {
 	console.log("Fail route");
+	// Clear the session on fail
+	req.logout();
+	req.flash("success_msg", "Logout successful");
+	res.redirect("/");
 });
 
 router.get("/logout", (req, res) => {

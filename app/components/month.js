@@ -17,14 +17,20 @@ export default class Month extends React.Component {
 	}
 	
 	typeInField(month, field, event) {
-		this.props.typeListener(month, field, event.target.value);
+		// console.log(this.props.monthName, this.props.canEdit);
+		if (this.props.canEdit) {
+			this.props.typeListener(month, field, event.target.value);
+		}
 	}
 	
 	changeHandler(field, event) {
 		// console.log(event.target.value);
-		var dynamicObj = {};
-		dynamicObj[field] = event.target.value;
-		this.setState(dynamicObj);
+		// console.log(this.props.monthName, this.props.canEdit);
+		if (this.props.canEdit) {
+			var dynamicObj = {};
+			dynamicObj[field] = event.target.value;
+			this.setState(dynamicObj);
+		}
 	}
 	
 	componentDidMount() {
@@ -44,6 +50,7 @@ export default class Month extends React.Component {
 		var powers = this.state.powers;
 		var suit = this.state.suit;
 		var theme = this.state.theme;
+		var editText = this.props.canEdit ? "Click to Edit:" : "Login to Edit";
 
 		return (
 			<div className="monthPanel">
@@ -53,7 +60,7 @@ export default class Month extends React.Component {
 					<MuiThemeProvider>
 						<TextField
 							key={"key"+this.props.monthName}
-							floatingLabelText="Click to Edit:"
+							floatingLabelText={editText}
 							hintText="Photo theme"
 							value={theme}
 							onChange={this.changeHandler.bind(this, "theme")}
@@ -66,7 +73,7 @@ export default class Month extends React.Component {
 					<MuiThemeProvider>
 						<TextField
 							key={"key"+this.props.monthName}
-							floatingLabelText="Click to Edit:"
+							floatingLabelText={editText}
 							hintText="The powers I'll use"
 							multiLine={true}
 							rows={2}
@@ -82,7 +89,7 @@ export default class Month extends React.Component {
 					<MuiThemeProvider>
 						<TextField
 							key={"key"+this.props.monthName}
-							floatingLabelText="Click to Edit:"
+							floatingLabelText={editText}
 							hintText="How to pose"
 							multiLine={true}
 							rows={2}
@@ -98,7 +105,7 @@ export default class Month extends React.Component {
 					<MuiThemeProvider>
 						<TextField
 							key={"key"+this.props.monthName}
-							floatingLabelText="Click to Edit:"
+							floatingLabelText={editText}
 							hintText="What my suit does"
 							multiLine={true}
 							rows={2}
@@ -114,7 +121,7 @@ export default class Month extends React.Component {
 					<MuiThemeProvider>
 						<TextField
 							key={"key"+this.props.monthName}
-							floatingLabelText="Click to Edit:"
+							floatingLabelText={editText}
 							hintText="Neat special effects"
 							multiLine={true}
 							rows={2}

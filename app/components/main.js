@@ -44,7 +44,7 @@ export default class Main extends React.Component {
 		axios.post("/updateMonths", {body: this.state.monthStats});
 		// console.log("save updates function");
 		axios.get("/allmonths").then(function(result){
-			console.log(result);
+			// console.log(result);
 			this.setState({ allMonths: result.data });
 		}.bind(this) );
 	}
@@ -70,26 +70,21 @@ export default class Main extends React.Component {
 		axios.get("/allmonths").then(function(result){
 			this.setState({ allMonths: result.data });
 		}.bind(this) );
-		/*
-		if (this.state.login) {
-			console.log("Logged in");
-		} else {
-			console.log("Failed");
-		}
-		*/
 	}
 	
 	componentDidUpdate() {
 		if (this.state.login) {
-			console.log("Logged in");
+			console.log("Logged in, CDU");
 		} else {
-			console.log("Failed");
+			console.log("Not logged in, CDU");
 		}
 	}
 
 // POST only valid with login, display message otherwise
 
 	render() {
+		console.log(this.state.login, "from Render");
+		var canEdit = this.state.login;
 		var monthDivs = "";
 		var typeListener = this.typeListener;
 		var saveUpdates = this.saveUpdates;
@@ -97,7 +92,7 @@ export default class Main extends React.Component {
 		var logout = this.logout;
 		if (this.state.allMonths.length > 0) {
 			monthDivs = this.state.allMonths.map(function(month, inc){
-				return <Month {...month} typeListener={typeListener} key={"month"+inc} />
+				return <Month {...month} canEdit={canEdit} typeListener={typeListener} key={"month"+inc} />
 			});
 		}
 		var saveButton = this.state.login ? <MuiThemeProvider><RaisedButton label="SAVE UPDATES" primary={true} onClick={saveUpdates}/></MuiThemeProvider> : "";

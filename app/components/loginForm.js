@@ -1,5 +1,6 @@
 var React = require("react");
 import TextField from "material-ui/TextField";
+import RaisedButton from "material-ui/RaisedButton";
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export default class LoginForm extends React.Component {
@@ -42,7 +43,7 @@ export default class LoginForm extends React.Component {
 					type="password"
 					onChange={handlePwChange}
 				/>
-				<input type="submit" value="Login" />
+				<input type="submit" style={{backgroundColor:"green", color:"white"}} value="Login" />
 			</form>
 		)
 	}
